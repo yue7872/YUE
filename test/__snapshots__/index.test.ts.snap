@@ -1,0 +1,9 @@
+// Vitest Snapshot v1
+
+exports[`should > exported 1`] = `
+{
+  "children": [],
+  "props": {},
+  "tag": "div",
+}
+`;
