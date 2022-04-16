@@ -14,7 +14,7 @@ import createVNode from './createVNode.js'
 
 // export default function h(){}  import h from
 // or  export const h = function(){}  import {h} from
-export default function h(tag, props, children) {
+export default function h(tag: string, props: any, children: any) {
   if (!props && !children)
     return createVNode(tag, null, null)
 
