@@ -11,7 +11,7 @@ export default function compiler(templateStr: string): any {
   tagArr.shift()
   tagArr.forEach((item) => {
     const objKey: any = item.split('=')[0]
-    const objValue: string = item.split('=')[1]
+    const objValue: string = item.split('=')[1].replace(/\"/g, '')
     props[objKey] = objValue
   })
   const childrenStr = templateStr.match(/>.*</)![0]

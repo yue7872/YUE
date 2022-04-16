@@ -25,12 +25,15 @@ describe('should', () => {
             "tag": "span",
           },
         ],
+        "props": {},
         "tag": "div",
       }
     `)
     const vNodeOnly = h('div')
     expect(vNodeOnly).toMatchInlineSnapshot(`
       {
+        "children": "",
+        "props": {},
         "tag": "div",
       }
     `)

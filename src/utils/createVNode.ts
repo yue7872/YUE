@@ -6,7 +6,11 @@ interface VNode {
   children?: any
 }
 export default function createVNode(tag: string, props?: any, children?: any) {
-  const vNode: VNode = {}
+  const vNode: VNode = {
+    tag: '',
+    props: {},
+    children: '',
+  }
   vNode.tag = tag
   if (props)
     vNode.props = props
