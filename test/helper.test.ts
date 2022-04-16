@@ -1,19 +1,14 @@
 import { describe, expect, it } from 'vitest'
 import h from '../src/utils/help.js'
-describe('should', () => {
-  it('exported', () => {
-    expect(1).toEqual(1)
-  })
-})
 
 describe('should', () => {
   it('exported', () => {
-    const vNodeNormal = h('div', { class: 'cunstom' }, 'my div')
+    const vNodeNormal = h('div', { class: 'custom' }, 'my div')
     expect(vNodeNormal).toMatchInlineSnapshot(`
       {
         "children": "my div",
         "props": {
-          "class": "cunstom",
+          "class": "custom",
         },
         "tag": "div",
       }
