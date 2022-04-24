@@ -7,97 +7,10 @@
   <title>Document</title>
 </head>
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <input class="start" value="21312"></input>
+  </div>
 </body>
 <script>
-function createVNode(tag, props, children) {
-  const vNode = {
-    tag: '',
-    props: {},
-    children: '',
-  }
-  vNode.tag = tag
-  if (props)
-    vNode.props = props
-  if (children) {
-    if (Array.isArray(children)) {
-      vNode.children = Array.from({ length: children.length })
-      children.map((child, idx) =>
-        // eslint-disable-next-line no-param-reassign
-        vNode.children[idx] = h(...child),
-      )
-    }
-    else {
-      vNode.children = children
-    }
-  }
-  return vNode
-}
-function compiler(templateStr) {
-  // <div class="custom">my div</div>
-  // ?表示0次或1次 可以匹配第一次出现的
-  const firstTag = templateStr.match(/<.*?>/)[0].replace('<', '').replace('>', '')
-  const tagArr = firstTag.split(' ')
-  const tagName = tagArr[0]
-  const props = {}
-  let nodeChildren
-
-  tagArr.shift()
-  tagArr.forEach((item) => {
-    const objKey = item.split('=')[0]
-    const objValue = item.split('=')[1].replace(/\"/g, '')
-    props[objKey] = objValue
-  })
-  const childrenStr = templateStr.match(/>.*</)[0]
-  const children = childrenStr.substring(1, childrenStr.length - 1)
-  if (children.includes('<') && children.includes('</'))
-    nodeChildren = [compiler(children)]
-  else
-    nodeChildren = children
-  return [tagName, props, nodeChildren]
-}
-function h(tag, props, children) {
-  if (!props && !children)
-    return createVNode(tag, null, null)
-
-  if (props && children)
-    return createVNode(tag, props, children)
-  if (!children) {
-    if (typeof props === 'object') {
-      if (props.length === 0)
-        return createVNode(tag, null, null)
-      if (Array.isArray(props))
-        return createVNode(tag, null, props)
-      else return createVNode(tag, props, null)
-    }
-    else if (typeof props === 'string') {
-      return createVNode(tag, null, props)
-    }
-  }
-}
-const templateStr = '<div class="custom" title="test" click="handle"><span class="span">i am a span</span></div>'
-const arr = compiler(templateStr)
-const vNode = h(...arr)
-const root = document.querySelector('#root')
-function renderer(vNode, parent) {
-  const { tag, props, children } = vNode
-  const newDom = document.createElement(tag)
-  parent.appendChild(newDom)
-  if (props) {
-    Object.keys(props).forEach((k) => {
-      newDom.setAttribute(k, props[k])
-    })
-  }
-  if (children) {
-    if (typeof children == 'string')
-      newDom.innerHTML = children
-    if (Array.isArray(children)) {
-      children.forEach((item) => {
-        renderer(item, newDom)
-      })
-    }
-  }
-}
-renderer(vNode, root)
 </script>
 </html>
