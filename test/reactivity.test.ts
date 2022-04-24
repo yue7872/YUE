@@ -3,11 +3,17 @@ import { reactivity } from '../src/utils/reactivity'
 
 describe('reactivity', () => {
   it('exported', () => {
-    const reactObj = reactivity()
+    const studentA = {
+      name: 'yue',
+    }
+    const storeName = ''
+    const changedName = 'output'
+    const reactObj = reactivity(studentA, storeName, changedName)
     expect(reactObj).toMatchInlineSnapshot(`
-      {
-        "name": "Bob",
-      }
+      [
+        "yue",
+        "output",
+      ]
     `)
   })
 })
